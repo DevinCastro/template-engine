@@ -53,6 +53,41 @@ const createManager = employee => {
     .catch(err => console.log(err))
 }
 
+const createEngineer = employee => {
+  prompt([
+    {
+      type: 'input',
+      name: 'github',
+      message: "What is the engineer's Github username?"
+    },
+  ])
+    .then(({ github }) => {
+      employees.push(new Engineer(employee.name, employee.id, employee.email, github))
+      // subMenu()
+      console.log(employees)
+    })
+    .catch(err => console.log(err))
+}
+
+const createIntern = employee => {
+  prompt([
+    {
+      type: 'input',
+      name: 'school',
+      message: "What school did the intern go to?"
+    },
+  ])
+    .then(({ school }) => {
+      employees.push(new Intern(employee.name, employee.id, employee.email, school))
+      // subMenu()
+      console.log(employees)
+    })
+    .catch(err => console.log(err))
+}
+
+
+
+// The first function that will start prompting the user for questions about an employee
 const mainMenu = () => {
   prompt([
     {
