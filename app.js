@@ -37,6 +37,22 @@ const { create } = require("domain");
 
 let employees = []
 
+const createManager = employee => {
+  prompt([
+    {
+      type: 'input',
+      name: 'officeNumber',
+      message: "What is the manager's office number?"
+    },
+  ])
+    .then(({ officeNumber }) => {
+      employees.push(new Manager(employee.name, employee.id, employee.email, officeNumber))
+      // subMenu()
+      console.log(employees)
+    })
+    .catch(err => console.log(err))
+}
+
 const mainMenu = () => {
   prompt([
     {
@@ -65,8 +81,6 @@ const mainMenu = () => {
       switch (employee.title) {
         case 'Manager':
           createManager(employee)
-          // employees.push(new Manager(employee.name, employee.id, employee.email))
-          // subMenu()
           break
         case 'Engineer':
           createEngineer(employee)
