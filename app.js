@@ -47,8 +47,8 @@ const createManager = employee => {
   ])
     .then(({ officeNumber }) => {
       employees.push(new Manager(employee.name, employee.id, employee.email, officeNumber))
-      // subMenu()
-      console.log(employees)
+      makeAnother()
+      // console.log(employees)
     })
     .catch(err => console.log(err))
 }
@@ -63,8 +63,8 @@ const createEngineer = employee => {
   ])
     .then(({ github }) => {
       employees.push(new Engineer(employee.name, employee.id, employee.email, github))
-      // subMenu()
-      console.log(employees)
+      makeAnother()
+      // console.log(employees)
     })
     .catch(err => console.log(err))
 }
@@ -79,13 +79,32 @@ const createIntern = employee => {
   ])
     .then(({ school }) => {
       employees.push(new Intern(employee.name, employee.id, employee.email, school))
-      // subMenu()
-      console.log(employees)
+      makeAnother()
+      // console.log(employees)
     })
     .catch(err => console.log(err))
 }
 
-
+const makeAnother = () => {
+  prompt({
+    type: 'list',
+    name: 'another',
+    choices: ['Yes', "No, I'm finished!"],
+    message: 'What would you like to add another employee?'
+  })
+    .then(({ another }) => {
+      switch (another) {
+        case 'Yes':
+          mainMenu()
+          break
+        case "No, I'm finished!":
+          const html = render(employees)
+          fs.writeFileSync(path.join(__dirname, 'output', 'index.html'), html)
+          break
+      }
+    })
+    .catch(err => console.log(err))
+}
 
 // The first function that will start prompting the user for questions about an employee
 const mainMenu = () => {
