@@ -35,8 +35,10 @@ const { create } = require("domain");
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
+// first create empty array to hold all of the employees' information
 let employees = []
 
+// function to create a manager type
 const createManager = employee => {
   prompt([
     {
@@ -53,6 +55,7 @@ const createManager = employee => {
     .catch(err => console.log(err))
 }
 
+// function to create an engineer type
 const createEngineer = employee => {
   prompt([
     {
@@ -69,6 +72,7 @@ const createEngineer = employee => {
     .catch(err => console.log(err))
 }
 
+// function to create an intern type
 const createIntern = employee => {
   prompt([
     {
@@ -85,6 +89,7 @@ const createIntern = employee => {
     .catch(err => console.log(err))
 }
 
+// recrusive function to add another employee or end the program and render HTML file
 const makeAnother = () => {
   prompt({
     type: 'list',
@@ -98,6 +103,7 @@ const makeAnother = () => {
           mainMenu()
           break
         case "No, I'm finished!":
+          // this will write the html file in the 'output' folder
           fs.writeFileSync(outputPath, render(employees))
           break
       }
