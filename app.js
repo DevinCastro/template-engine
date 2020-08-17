@@ -98,8 +98,7 @@ const makeAnother = () => {
           mainMenu()
           break
         case "No, I'm finished!":
-          const html = render(employees)
-          fs.writeFileSync(path.join(__dirname, 'output', 'index.html'), html)
+          fs.writeFileSync(outputPath, render(employees))
           break
       }
     })
